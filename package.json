@@ -18,6 +18,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@fluxerjs/core": "^1.2.2"
+    "@fluxerjs/core": "^1.2.2",
+    "dotenv": "^17.3.1"
   }
 }
