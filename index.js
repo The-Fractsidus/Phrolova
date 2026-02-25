@@ -33,7 +33,7 @@ client.on(Events.MessageCreate, async (message) => {
     const reply = await message.reply({ embeds: [embed] });
     await reply.react("✅");
   } else {
-    await message.reply(`You don't have access to this command.`);
+    return;
   }
 });
 
