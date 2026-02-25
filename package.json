@@ -1,0 +1,23 @@
+{
+  "name": "phrolova",
+  "version": "1.0.0",
+  "description": "Our general purpose Fluxer bot. Powered by Fluxer.js",
+  "homepage": "https://github.com/The-Fractsidus/Phrolova#readme",
+  "bugs": {
+    "url": "https://github.com/The-Fractsidus/Phrolova/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Fractsidus/Phrolova.git"
+  },
+  "license": "MIT",
+  "author": "Casper",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@fluxerjs/core": "^1.2.2"
+  }
+}
