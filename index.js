@@ -2,8 +2,18 @@ import { Client, Events, EmbedBuilder, PermissionFlags } from "@fluxerjs/core";
 import {} from "dotenv/config";
 
 const client = new Client({ intents: 0 });
+const logs = process.env.LOGS_CHANNEL_ID;
 
-client.on(Events.Ready, () => console.log("Ready!"));
+client.on(Events.Ready, async () => {
+  if (logs) {
+    await client.channels.send(
+      logs,
+      `<@&1477711796422300999> [LOG|ready] Bot has started and is ready for use`,
+    );
+  } else {
+    console.log(`[LOG|ready] Bot has started and is ready for use`);
+  }
+});
 
 async function getMemberPerms(message) {
   const guild =
@@ -44,15 +54,24 @@ client.on(
       reaction.emoji.name === "✅" &&
       reaction.channelId === process.env.VERIFY_CHANNEL_ID
     ) {
-      console.log(`User ${reaction._data.user_id} verified`);
-
       const roleId = process.env.VERIFY_ROLE_ID;
       if (!roleId) return;
 
       const guild = client.guilds.get(reaction.guildId);
       const member = await guild.fetchMember(reaction._data.user_id);
-      if (member && !member.roles.cache.has(roleId))
+      if (member && !member.roles.cache.has(roleId)) {
         await member.roles.add(roleId);
+        if (logs) {
+          await client.channels.send(
+            logs,
+            `<@&1477711796422300999> [LOG|verify] User <@${reaction._data.user_id}> verified`,
+          );
+        } else {
+          console.log(
+            `[LOG|verify] User <@${reaction._data.user_id}> verified`,
+          );
+        }
+      }
     }
   },
 );
